@@ -8,5 +8,5 @@ window.onload = function(){
 	canvasContext.fillStyle = "black";
 	canvasContext.fillRect(0,0,canvas.width,canvas.height);
 	canvasContext.fillStyle = "red";
-	canvasContext.fillRect(100,200, 50, 25);
+	canvasContext.fillRect(100,100, 50, 25);
 };
