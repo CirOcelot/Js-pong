@@ -26,9 +26,15 @@ function moveEverything() {
 }
 
 function drawEverything() {
+	//blanks out screen with black
 	colorRect(0, 0, canvas.width, canvas.height, 'black');
+	//this is left player paddle
 	colorRect(2, 210, 10, 100, 'white');
-	colorRect(ballX, 200, 10, 10, 'red');
+	//next line draws the ball
+	canvasContext.fillStyle = 'red';
+	canvasContext.beginPath();
+	canvasContext.arc(ballX, 100, 10, 0, Math.PI*2, true);
+	canvasContext.fill();
 }
 
 function colorRect(leftX, topY, width, height, drawColor) {
