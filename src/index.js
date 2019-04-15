@@ -17,18 +17,21 @@ window.onload = function(){
 
 function moveEverything() {
 	ballX = ballX + ballSpeedX;
-	if(ballX > 790){
+	if(ballX < 0) {
+		ballSpeedX = -ballSpeedX;
+	}
+	if(ballX > canvas.width) {
 		ballSpeedX = -ballSpeedX;
 	}
 }
 
 function drawEverything() {
-	
-	
-	canvasContext.fillStyle = "black";
-	canvasContext.fillRect(0,0,canvas.width,canvas.height);
-	canvasContext.fillStyle = "white";
-	canvasContext.fillRect(2,210,10,100);
-	canvasContext.fillStyle = "red";
-	canvasContext.fillRect(ballX, 200, 10, 10);
+	colorRect(0, 0, canvas.width, canvas.height, 'black');
+	colorRect(2, 210, 10, 100, 'white');
+	colorRect(ballX, 200, 10, 10, 'red');
+}
+
+function colorRect(leftX, topY, width, height, drawColor) {
+	canvasContext.fillStyle = drawColor;
+	canvasContext.fillRect(leftX, topY, width, height);
 }
