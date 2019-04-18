@@ -6,6 +6,8 @@ var ballSpeedX = 10;
 var ballSpeedY = 4;
 
 var paddle1Y = 250;
+var paddle2Y = 250;
+const PADDLE_THICKNESS = 10;
 const PADDLE_HEIGHT = 100;
 
 function calculateMousePos(evt) {
@@ -54,7 +56,11 @@ function moveEverything() {
 		}
 	}
 	if(ballX > canvas.width) {
-		ballSpeedX = -ballSpeedX;
+		if(ballY > paddle2Y && ballY < paddle2Y+PADDLE_HEIGHT) {
+			ballSpeedX = -ballSpeedX;
+		} else {
+			ballReset();
+		}
 	}
 	if(ballY < 0) {
 		ballSpeedY = -ballSpeedY;
@@ -67,8 +73,13 @@ function moveEverything() {
 function drawEverything() {
 	//blanks out screen with black
 	colorRect(0, 0, canvas.width, canvas.height, 'black');
+	
 	//this is left player paddle
-	colorRect(0, paddle1Y, 10, PADDLE_HEIGHT, 'white');
+	colorRect(0, paddle1Y, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
+	
+	//this is right computer paddle
+	colorRect(canvas.width-10, paddle2Y, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
+	
 	//next line draws the ball
 	colorCircle(ballX, ballY, 10, 'white');
 }
