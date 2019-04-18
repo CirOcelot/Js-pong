@@ -37,11 +37,21 @@ window.onload = function(){
 	});
 };
 
+function ballReset() {
+	ballSpeedX = -ballSpeedX;
+	ballX = canvas.width/2;
+	ballY = canvas.height/2;
+}
+
 function moveEverything() {
 	ballX = ballX + ballSpeedX;
 	ballY = ballY + ballSpeedY;
 	if(ballX < 0) {
-		ballSpeedX = -ballSpeedX;
+		if(ballY > paddle1Y && ballY < paddle1Y+PADDLE_HEIGHT) {
+			ballSpeedX = -ballSpeedX;
+		} else {
+			ballReset();
+		}
 	}
 	if(ballX > canvas.width) {
 		ballSpeedX = -ballSpeedX;
@@ -58,7 +68,7 @@ function drawEverything() {
 	//blanks out screen with black
 	colorRect(0, 0, canvas.width, canvas.height, 'black');
 	//this is left player paddle
-	colorRect(2, paddle1Y, 10, PADDLE_HEIGHT, 'white');
+	colorRect(0, paddle1Y, 10, PADDLE_HEIGHT, 'white');
 	//next line draws the ball
 	colorCircle(ballX, ballY, 10, 'white');
 }
