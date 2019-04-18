@@ -5,6 +5,10 @@ var ballY = 50;
 var ballSpeedX = 10;
 var ballSpeedY = 4;
 
+
+var player1Score = 0;
+var player2Score = 0;
+
 var paddle1Y = 250;
 var paddle2Y = 250;
 const PADDLE_THICKNESS = 10;
@@ -66,6 +70,7 @@ computerMovement();
 			ballSpeedX = -ballSpeedX;
 		} else {
 			ballReset();
+			player2Score++;
 		}
 	}
 	if(ballX > canvas.width) {
@@ -73,6 +78,7 @@ computerMovement();
 			ballSpeedX = -ballSpeedX;
 		} else {
 			ballReset();
+			player1Score++;
 		}
 	}
 	if(ballY < 0) {
@@ -95,6 +101,9 @@ function drawEverything() {
 	
 	//next line draws the ball
 	colorCircle(ballX, ballY, 10, 'white');
+
+	canvasContext.fillText(player1Score, 100, 100);
+	canvasContext.fillText(player2Score, canvas.width-100, 100);
 }
 
 function colorCircle(centerX, centerY, radius, drawColor) {
